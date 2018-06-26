@@ -14,7 +14,7 @@ export class PodSpec {
     public terminationGracePeriodSeconds: number,
     public activeDeadlineSeconds: number,
     public dnsPolicy: string,
-    public nodeSelector: {[name: string]: string},
+    public nodeSelector: { [name: string]: string },
     public serviceAccountName: string,
     public automountServiceAccountToken: boolean,
     public nodeName: string,
@@ -34,5 +34,5 @@ export class PodSpec {
     public priority: number,
     public dnsConfig: PodDNSConfig,
     // public readinessGates: PodReadinessGate[]
-  ) {}
+  ) { }
 }

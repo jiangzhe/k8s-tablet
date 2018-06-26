@@ -4,5 +4,5 @@ export class NodeSelectorTerm {
   constructor(
     public matchExpressions: NodeSelectorRequirement[],
     public matchFields: NodeSelectorRequirement[]
-  ) {}
+  ) { }
 }

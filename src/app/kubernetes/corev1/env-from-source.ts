@@ -6,5 +6,5 @@ export class EnvFromSource {
     public prefix: string,
     configMapRef: ConfigMapEnvSource,
     secretRef: SecretEnvSource
-  ) {}
+  ) { }
 }

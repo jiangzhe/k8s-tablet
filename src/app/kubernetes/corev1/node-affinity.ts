@@ -5,5 +5,5 @@ export class NodeAffinity {
   constructor(
     public requiredDuringSchedulingIgnoredDuringExecution: NodeSelector,
     public preferredDuringSchedulingIgnoredDuringExecution: PreferredSchedulingTerm
-  ) {}
+  ) { }
 }

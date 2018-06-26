@@ -5,5 +5,5 @@ export class PodAffinity {
   constructor(
     public requiredDuringSchedulingIgnoredDuringExecution: PodAffinityTerm[],
     public preferredDuringSchedulingIgnoredDuringExecution: WeightedPodAffinityTerm[]
-  ) {}
+  ) { }
 }

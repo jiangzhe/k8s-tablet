@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { RestService } from './rest.service';
-import { NamespaceList } from './namespace-list';
+import { NamespaceList } from './kubernetes/corev1/namespace-list';
 import { Observable } from 'rxjs';
-import { Namespace } from './namespace';
+import { Namespace } from './kubernetes/corev1/namespace';
 
 @Injectable({
   providedIn: 'root'

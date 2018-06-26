@@ -3,5 +3,5 @@ export class NodeSelectorRequirement {
     public key: string,
     public operator: string,
     public values: string
-  ) {}
+  ) { }
 }

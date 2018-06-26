@@ -1,0 +1,5 @@
+<ul>
+  <li *ngFor="let namespace of namespaces">
+    <a routerLink="/namespaces/{{namespace.metadata['name']}}">{{namespace.metadata['name']}}</a>
+  </li>
+</ul>

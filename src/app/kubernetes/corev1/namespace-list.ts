@@ -1,10 +1,9 @@
 import { Namespace } from "./namespace";
+import { ListMeta } from "../metav1/list-meta";
 
-export class NamespaceList {
-  constructor(
-    public kind: string,
-    public apiVersion: string,
-    public metadata: {[name: string]: string},
-    public items: Namespace[]
-  ) {}
+export interface NamespaceList {
+    kind: string,
+    apiVersion: string,
+    metadata: ListMeta,
+    items: Namespace[]
 }

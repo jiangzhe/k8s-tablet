@@ -1,6 +1,4 @@
-export class ResourceRequirements {
-  constructor(
-    public limits: {[name: string]: string | number},
-    public requests: {[name: string]: string | number}
-  ) {}
+export interface ResourceRequirements {
+  limits: {[name: string]: string | number};
+  requests: {[name: string]: string | number};
 }

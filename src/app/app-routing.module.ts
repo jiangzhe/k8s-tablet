@@ -5,13 +5,15 @@ import {NamespacesComponent} from './namespaces/namespaces.component';
 import { DeploymentsComponent } from './deployments/deployments.component';
 import { StatefulsetsComponent } from './statefulsets/statefulsets.component';
 import { ConfigmapsComponent } from './configmaps/configmaps.component';
+import { DaemonsetsComponent } from './daemonsets/daemonsets.component';
 const routes: Routes = [
   {path: "", redirectTo: "namespaces", pathMatch: "full"},
   {path: "namespaces", component: NamespacesComponent},
   {path: "namespaces/:name", component: NamespaceComponent},
   {path: "deployments", component: DeploymentsComponent},
   {path: "statefulsets", component: StatefulsetsComponent},
-  {path: "configmaps", component: ConfigmapsComponent}
+  {path: "configmaps", component: ConfigmapsComponent},
+  {path: "daemonsets", component: DaemonsetsComponent}
 ];
 
 @NgModule({

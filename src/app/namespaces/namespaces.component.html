@@ -1,5 +1,18 @@
-<ul>
-  <li *ngFor="let namespace of namespaces">
-    <a routerLink="/namespaces/{{namespace.metadata['name']}}">{{namespace.metadata['name']}}</a>
-  </li>
-</ul>
+<table>
+    <thead>
+      <tr>
+        <td>Namespace</td>
+        <td>Phase</td>
+        <td>CreationTimestamp</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let namespace of namespaces">
+        <td><a routerLink="/namespaces/{{namespace.metadata.name}}">{{namespace.metadata.name}}</a></td>
+        <td>{{namespace.status.phase}}</td>
+        <td>{{namespace.metadata.creationTimestamp}}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  

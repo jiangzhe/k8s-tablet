@@ -1,6 +1,4 @@
-export class ConfigMapEnvSource {
-  constructor(
-    public name: string,
-    public optional: boolean
-  ) {}
+export interface ConfigMapEnvSource {
+  name: string;
+  optional: boolean;
 }

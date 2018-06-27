@@ -1,6 +1,4 @@
-export class ObjectFieldSelector {
-  constructor(
-    public apiVersion: string,
-    public fieldPath: string
-  ) {}
+export interface ObjectFieldSelector {
+  apiVersion: string;
+  fieldPath: string;
 }

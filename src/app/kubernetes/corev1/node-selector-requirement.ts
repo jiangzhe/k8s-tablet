@@ -1,7 +1,5 @@
-export class NodeSelectorRequirement {
-  constructor(
-    public key: string,
-    public operator: string,
-    public values: string
-  ) { }
+export interface NodeSelectorRequirement {
+  key: string;
+  operator: string;
+  values: string;
 }

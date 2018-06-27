@@ -1,6 +1,4 @@
-export class RollingUpdateDeployment {
-  constructor(
-    maxUnavailable: number,
-    maxSurge: number
-  ) {}
+export interface RollingUpdateDeployment {
+  maxUnavailable: number;
+  maxSurge: number;
 }

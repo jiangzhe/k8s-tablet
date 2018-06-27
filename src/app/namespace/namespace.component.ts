@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { Location } from '@angular/common';
 import { KubeService } from '../kube.service';
-import { Namespace } from '../namespace';
+import { Namespace } from '../kubernetes/corev1/namespace';
 import { Observable } from 'rxjs';
 
 @Component({

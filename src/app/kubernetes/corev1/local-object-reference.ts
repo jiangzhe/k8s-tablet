@@ -1,5 +1,3 @@
-export class LocalObjectReference {
-  constructor(
-    public name: string
-  ) {}
+export interface LocalObjectReference {
+  name: string;
 }

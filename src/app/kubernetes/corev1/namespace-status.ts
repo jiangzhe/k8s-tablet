@@ -1,3 +1,3 @@
-export class NamespaceStatus {
-  constructor(phase: string) { }
+export interface NamespaceStatus {
+  phase: string;
 }

@@ -1,9 +1,7 @@
 import { LabelSelector } from "../metav1/label-selector";
 
-export class PodAffinityTerm {
-  constructor(
-    public labelSelector: LabelSelector,
-    public namespaces: string[],
-    public topologyKey: string
-  ) { }
+export interface PodAffinityTerm {
+  labelSelector: LabelSelector;
+  namespaces: string[];
+  topologyKey: string;
 }

@@ -1,8 +1,6 @@
-export class VolumeMount {
-  constructor(
-    public name: string,
-    public readOnly: boolean,
-    public mountPath: string,
-    public subPath: string
-  ) {}
+export interface VolumeMount {
+  name: string;
+  readOnly: boolean;
+  mountPath: string;
+  subPath: string;
 }

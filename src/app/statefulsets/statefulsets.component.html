@@ -1,3 +1,26 @@
-<p>
-  statefulsets works!
-</p>
+<table>
+    <thead>
+      <tr>
+        <td>Name</td>
+        <td><span (click)="showNamespaceFilter = !showNamespaceFilter">Namespace</span>
+          <input *ngIf="showNamespaceFilter" [(ngModel)]="filter.namespace" (keyup.enter)="onFilter()" />
+        </td>
+        <td><span (click)="showInstanceFilter = !showInstanceFilter">Instance</span>
+          <input *ngIf="showInstanceFilter" [(ngModel)]="filter.instance" (keyup.enter)="onFilter()" />
+        </td>
+        <td>Replica</td>
+        <td>availableReplica</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let statefulset of statefulsets">
+        <td>{{statefulset.metadata.name}}</td>
+        <td>{{statefulset.metadata.namespace}}</td>
+        <td>{{instanceName(statefulset.metadata)}}</td>
+        <td>{{statefulset.spec.replicas}}</td>
+        <td>{{statefulset.status.availableReplicas}}</td>
+      </tr>
+    </tbody>
+  </table>
+  
+  

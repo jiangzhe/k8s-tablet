@@ -1,6 +1,4 @@
-export class TCPSocketAction {
-  constructor(
-    public port: string | number,
-    public host: string
-  ) {}
+export interface TCPSocketAction {
+  port: string | number;
+  host: string;
 }

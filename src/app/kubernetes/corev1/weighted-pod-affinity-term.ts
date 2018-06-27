@@ -1,8 +1,6 @@
 import { PodAffinityTerm } from "./pod-affinity-term";
 
-export class WeightedPodAffinityTerm {
-  constructor(
-    public weight: number,
-    public podAffinityTerm: PodAffinityTerm
-  ) {}
+export interface WeightedPodAffinityTerm {
+  weight: number;
+  podAffinityTerm: PodAffinityTerm;
 }

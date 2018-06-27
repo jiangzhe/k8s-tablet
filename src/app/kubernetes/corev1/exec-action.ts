@@ -1,5 +1,3 @@
-export class ExecAction {
-  constructor(
-    public command: string[]
-  ) {}
+export interface ExecAction {
+  command: string[];
 }

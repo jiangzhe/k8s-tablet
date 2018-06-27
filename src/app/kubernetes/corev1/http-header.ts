@@ -1,6 +1,4 @@
 export class HTTPHeader {
-  constructor(
-    public name: string,
-    public value: string
-  ) {}
+  name: string;
+  value: string;
 }

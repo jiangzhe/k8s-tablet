@@ -1,7 +1,5 @@
-export class SecretKeySelector {
-  constructor(
-    public name: string,
-    public key: string,
-    public optional: boolean
-  ) {}
+export interface SecretKeySelector {
+  name: string;
+  key: string;
+  optional: boolean;
 }

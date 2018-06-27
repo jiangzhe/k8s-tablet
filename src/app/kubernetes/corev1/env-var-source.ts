@@ -3,11 +3,9 @@ import { ResourceFieldSelector } from "./resource-field-selector";
 import { ConfigMapKeySelector } from "./config-map-key-selector";
 import { SecretKeySelector } from "./secret-key-selector";
 
-export class EnvVarSource {
-  constructor(
-    public fieldRef: ObjectFieldSelector,
-    public resourceFieldRef: ResourceFieldSelector,
-    public configMapKeyRef: ConfigMapKeySelector,
-    public secretKeyRef: SecretKeySelector
-  ) {}
+export interface EnvVarSource {
+  fieldRef: ObjectFieldSelector;
+  resourceFieldRef: ResourceFieldSelector;
+  configMapKeyRef: ConfigMapKeySelector;
+  secretKeyRef: SecretKeySelector;
 }

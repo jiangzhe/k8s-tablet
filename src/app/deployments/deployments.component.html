@@ -1,3 +1,25 @@
-<p>
-  deployments works!
-</p>
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td><span (click)="showNamespaceFilter = !showNamespaceFilter">Namespace</span>
+        <input *ngIf="showNamespaceFilter" [(ngModel)]="filter.namespace" (keyup.enter)="onFilter()" />
+      </td>
+      <td><span (click)="showInstanceFilter = !showInstanceFilter">Instance</span>
+        <input *ngIf="showInstanceFilter" [(ngModel)]="filter.instance" (keyup.enter)="onFilter()" />
+      </td>
+      <td>Replica</td>
+      <td>availableReplica</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let deployment of deployments">
+      <td>{{deployment.metadata.name}}</td>
+      <td>{{deployment.metadata.namespace}}</td>
+      <td>{{instanceName(deployment.metadata)}}</td>
+      <td>{{deployment.spec.replicas}}</td>
+      <td>{{deployment.status.availableReplicas}}</td>
+    </tr>
+  </tbody>
+</table>
+

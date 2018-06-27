@@ -1,0 +1,23 @@
+<table>
+    <thead>
+        <tr>
+          <td>Name</td>
+          <td>Namespace</td>
+          <td>CreationTimestamp</td>
+          <td>Desired</td>
+          <td>Available</td>
+          <td>Unavailable</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let daemonset of daemonsets">
+          <td><a routerLink="/namespaces/{{daemonset.metadata.namespace}}/daemonsets/{{daemonset.metadata.name}}">{{daemonset.metadata.name}}</a></td>
+          <td>{{daemonset.metadata.namespace}}</td>
+          <td>{{daemonset.metadata.creationTimestamp}}</td>
+          <td>{{daemonset.status.desiredNumberScheduled}}</td>
+          <td>{{daemonset.status.numberAvailable}}</td>
+          <td>{{daemonset.status.numberUnavailable}}</td>
+        </tr>
+      </tbody>
+    </table>
+    

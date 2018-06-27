@@ -1,6 +1,4 @@
-export class PodDNSConfigOption {
-  constructor(
-    public name: string,
-    public value: string
-  ) {}
+export interface PodDNSConfigOption {
+  name: string;
+  value: string;
 }

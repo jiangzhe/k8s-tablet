@@ -1,15 +1,14 @@
 import { OwnerReference } from "../metav1/owner-reference";
 import { DeploymentSpec } from "./deployment-spec";
 import { DeploymentStatus } from "./deployment-status";
+import { ObjectMeta } from "../metav1/object-meta";
 
-export class Deployment {
-  constructor(
-    public kind: string,
-    public apiVersion: string,
-    public metadata: { [name: string]: string },
-    public annotations: { [name: string]: string },
-    public ownerReferences: OwnerReference[],
-    public spec: DeploymentSpec,
-    public status: DeploymentStatus
-  ) { }
+export interface Deployment {
+  kind: string;
+  apiVersion: string;
+  metadata: ObjectMeta;
+  annotations: { [name: string]: string };
+  ownerReferences: OwnerReference[];
+  spec: DeploymentSpec;
+  status: DeploymentStatus;
 }

@@ -1,9 +1,7 @@
-export class ContainerPort {
-  constructor(
-    public name: string,
-    public hostPort: number,
-    public containerPort: number,
-    public protocol: string,
-    public hostIP: string
-  ) {}
+export interface ContainerPort {
+  name: string;
+    hostPort: number;
+    containerPort: number;
+    protocol: string;
+    hostIP: string;
 }

@@ -1,9 +1,7 @@
 import { PodDNSConfigOption } from "./pod-dns-config-option";
 
-export class PodDNSConfig {
-  constructor(
-    public nameservers: string[],
-    public searches: string[],
-    public options: PodDNSConfigOption[]
-  ) {}
+export interface PodDNSConfig {
+  nameservers: string[];
+  searches: string[];
+  options: PodDNSConfigOption[];
 }

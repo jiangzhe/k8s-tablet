@@ -1,6 +1,4 @@
-export class HostAlias {
-  constructor(
-    public ip: string,
-    public hostnames: string[]
-  ) {}
+export interface HostAlias {
+  ip: string;
+  hostnames: string[];
 }

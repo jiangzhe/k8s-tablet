@@ -1,9 +1,7 @@
 import { PodAffinityTerm } from "./pod-affinity-term";
 import { WeightedPodAffinityTerm } from "./weighted-pod-affinity-term";
 
-export class PodAffinity {
-  constructor(
-    public requiredDuringSchedulingIgnoredDuringExecution: PodAffinityTerm[],
-    public preferredDuringSchedulingIgnoredDuringExecution: WeightedPodAffinityTerm[]
-  ) { }
+export interface PodAffinity {
+  requiredDuringSchedulingIgnoredDuringExecution: PodAffinityTerm[];
+  preferredDuringSchedulingIgnoredDuringExecution: WeightedPodAffinityTerm[];
 }

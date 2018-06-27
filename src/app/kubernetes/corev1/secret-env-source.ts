@@ -1,6 +1,4 @@
-export class SecretEnvSource {
-  constructor(
-    public name: string,
-    public optional: boolean
-  ) {}
+export interface SecretEnvSource {
+  name: string;
+  optional: boolean;
 }

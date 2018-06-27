@@ -1,5 +1,3 @@
-export class NamespaceSpec {
-  constructor(
-    finalizers: string[]
-  ) { }
+export interface NamespaceSpec {
+  finalizers: string[];
 }

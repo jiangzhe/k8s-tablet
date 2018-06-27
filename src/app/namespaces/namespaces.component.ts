@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NamespaceList } from '../namespace-list';
-import { Namespace } from '../namespace';
+import { NamespaceList } from '../kubernetes/corev1/namespace-list';
+import { Namespace } from '../kubernetes/corev1/namespace';
 import { KubeService } from '../kube.service';
 @Component({
   selector: 'app-namespaces',

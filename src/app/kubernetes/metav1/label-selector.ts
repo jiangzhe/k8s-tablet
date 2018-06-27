@@ -1,8 +1,6 @@
 import { LabelSelectorRequirement } from "./label-selector-requirement";
 
-export class LabelSelector {
-  constructor(
-    public matchLabels: {[name: string]: string},
-    public matchExpressions: LabelSelectorRequirement
-  ) {}
+export interface LabelSelector {
+  matchLabels: {[name: string]: string};
+  matchExpressions: LabelSelectorRequirement;
 }

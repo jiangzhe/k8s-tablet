@@ -1,7 +1,5 @@
-export class LabelSelectorRequirement {
-  constructor(
-    public key: string,
-    public operator: string,
-    public values: string[]
-  ) {}
+export interface LabelSelectorRequirement {
+  key: string;
+  operator: string;
+  values: string[];
 }

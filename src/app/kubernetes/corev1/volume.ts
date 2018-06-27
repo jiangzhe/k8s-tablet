@@ -1,6 +1,4 @@
-export class Volume {
-  constructor(
-    public name: string,
-    public tosDisk: { [name: string]: string }
-  ) { }
+export interface Volume {
+  name: string;
+  tosDisk: { [name: string]: string };
 }

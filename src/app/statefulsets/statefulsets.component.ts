@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { KubeService } from '../kube.service';
 import { StatefulSet } from '../kubernetes/appsv1beta1/stateful-set';
-import { ListFilter } from './list-filter';
+import { ListFilter } from '../utils/list-filter';
 
 @Component({
   selector: 'app-statefulsets',
@@ -10,10 +10,10 @@ import { ListFilter } from './list-filter';
 })
 export class StatefulsetsComponent implements OnInit {
   instanceName = KubeService.getInstanceNameFromMetadata;
+  filter: ListFilter = new ListFilter();
 
   statefulsets: StatefulSet[];
   fullStatefulsets: StatefulSet[];
-  filter: ListFilter = {namespace: "", instance: ""};
   showNamespaceFilter = false;
   showInstanceFilter = false;
 
@@ -22,33 +22,12 @@ export class StatefulsetsComponent implements OnInit {
   ngOnInit() {
     this.kubeService.getStatefulSets().subscribe(sss => {
       this.fullStatefulsets = sss.items;
-      this.doFilter();
-    })
-  }
-
-  doFilter(): void {
-    this.statefulsets = this.fullStatefulsets.filter(s => {
-      if (this.filter.namespace !== "") {
-        if (!s.metadata.namespace) {
-          return false;
-        }
-        if (!s.metadata.namespace.includes(this.filter.namespace)) {
-          return false;
-        }
-      }
-      if (this.filter.instance !== "") {
-        if (!s.metadata.ownerReferences || !s.metadata.ownerReferences[0] || !s.metadata.ownerReferences[0].name) {
-          return false;
-        }
-        if (!s.metadata.ownerReferences[0].name.includes(this.filter.instance)) {
-          return false;
-        }
-      }
-      return true;
+      this.onFilter();
     })
   }
 
   onFilter(): void {
-    this.doFilter();
+    console.log(this.fullStatefulsets);
+    this.statefulsets = this.fullStatefulsets.filter(s => this.filter.check(s.metadata));
   }
 }

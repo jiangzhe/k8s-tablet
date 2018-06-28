@@ -14,6 +14,9 @@ import { DaemonsetsComponent } from './daemonsets/daemonsets.component';
 import { DaemonsetComponent } from './daemonset/daemonset.component';
 import { StatefulsetComponent } from './statefulset/statefulset.component';
 import { ConfigmapComponent } from './configmap/configmap.component';
+import { DeploymentComponent } from './deployment/deployment.component';
+import { ServiceComponent } from './service/service.component';
+import { ServicesComponent } from './services/services.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { ConfigmapComponent } from './configmap/configmap.component';
     DaemonsetsComponent,
     DaemonsetComponent,
     StatefulsetComponent,
-    ConfigmapComponent
+    ConfigmapComponent,
+    DeploymentComponent,
+    ServiceComponent,
+    ServicesComponent
   ],
   imports: [
     BrowserModule,

@@ -12,6 +12,8 @@ import { DaemonSetList } from './kubernetes/extensionsv1beta1/daemon-set-list';
 import { DaemonSet } from './kubernetes/extensionsv1beta1/daemon-set';
 import { ConfigMap } from './kubernetes/corev1/config-map';
 import { ConfigMapList } from './kubernetes/corev1/config-map-list';
+import { ServiceList } from './kubernetes/corev1/service-list';
+import { Service } from './kubernetes/corev1/service';
 
 @Injectable({
   providedIn: 'root'
@@ -68,6 +70,16 @@ export class KubeService {
   getNamespacedConfigMap(namespace: string, name: string): Observable<ConfigMap> {
     const cmUrl = `/api/v1/namespaces/${namespace}/configmaps/${name}`;
     return this.restService.get<ConfigMap>(cmUrl);
+  }
+
+  getServices(): Observable<ServiceList> {
+    const svcsUrl = `/api/v1/services`;
+    return this.restService.get<ServiceList>(svcsUrl);
+  }
+
+  getNamespacedService(namespace: string, name: string): Observable<Service> {
+    const svcUrl = `/api/v1/namespaces/${namespace}/services/${name}`;
+    return this.restService.get<Service>(svcUrl);
   }
 
   public static getInstanceNameFromMetadata(metadata: ObjectMeta): string {

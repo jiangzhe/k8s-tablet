@@ -6,14 +6,26 @@ import { DeploymentsComponent } from './deployments/deployments.component';
 import { StatefulsetsComponent } from './statefulsets/statefulsets.component';
 import { ConfigmapsComponent } from './configmaps/configmaps.component';
 import { DaemonsetsComponent } from './daemonsets/daemonsets.component';
+import { DeploymentComponent } from './deployment/deployment.component';
+import { StatefulsetComponent } from './statefulset/statefulset.component';
+import { ConfigmapComponent } from './configmap/configmap.component';
+import { DaemonsetComponent } from './daemonset/daemonset.component';
+import { ServicesComponent } from './services/services.component';
+import { ServiceComponent } from './service/service.component';
 const routes: Routes = [
   {path: "", redirectTo: "namespaces", pathMatch: "full"},
   {path: "namespaces", component: NamespacesComponent},
   {path: "namespaces/:name", component: NamespaceComponent},
   {path: "deployments", component: DeploymentsComponent},
+  {path: "namespaces/:namespace/deployments/:name", component: DeploymentComponent},
   {path: "statefulsets", component: StatefulsetsComponent},
+  {path: "namespaces/:namespace/statefulsets/:name", component: StatefulsetComponent},
   {path: "configmaps", component: ConfigmapsComponent},
-  {path: "daemonsets", component: DaemonsetsComponent}
+  {path: "namespaces/:namespace/configmaps/:name", component: ConfigmapComponent},
+  {path: "daemonsets", component: DaemonsetsComponent},
+  {path: "namespaces/:namespace/daemonsets/:name", component: DaemonsetComponent},
+  {path: "services", component: ServicesComponent},
+  {path: "namespaces/:namespace/services/:name", component: ServiceComponent},
 ];
 
 @NgModule({

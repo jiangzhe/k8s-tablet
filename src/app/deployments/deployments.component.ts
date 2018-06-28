@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { KubeService } from '../kube.service';
 import { Deployment } from '../kubernetes/extensionsv1beta1/deployment';
-import { ListFilter } from './list-filter';
+import { ListFilter } from '../utils/list-filter';
 
 @Component({
   selector: 'app-deployments',
@@ -11,7 +11,7 @@ import { ListFilter } from './list-filter';
 export class DeploymentsComponent implements OnInit {
   deployments: Deployment[];
   fullDeployments: Deployment[];
-  filter: ListFilter = {namespace: "", instance: ""};
+  filter: ListFilter = new ListFilter();
   showNamespaceFilter = false;
   showInstanceFilter = false;
 
@@ -23,31 +23,11 @@ export class DeploymentsComponent implements OnInit {
     this.kubeService.getDeployments().subscribe(dms => {
       // console.log(dms);
       this.fullDeployments = dms.items;
-      this.doFilter();
+      this.onFilter();
     })
   }
 
-  doFilter(): void {
-    this.deployments = this.fullDeployments.filter(d => {
-      if (this.filter.namespace !== "") {
-        if (!d.metadata.namespace) {
-          return false;
-        }
-        if (!d.metadata.namespace.includes(this.filter.namespace)) {
-          return false;
-        }
-      }
-      if (this.filter.instance !== "") {
-        if (!d.metadata.ownerReferences || !d.metadata.ownerReferences[0] || !d.metadata.ownerReferences[0].name) {
-          return false;
-        }
-        if (!d.metadata.ownerReferences[0].name.includes(this.filter.instance)) {
-          return false;
-        }
-      }
-      return true;
-    })
+  onFilter(): void {
+    this.deployments = this.fullDeployments.filter(d => this.filter.check(d.metadata));
   }
-
-  onFilter(): void { this.doFilter(); }
 }

@@ -14,6 +14,8 @@ import { ConfigMap } from './kubernetes/corev1/config-map';
 import { ConfigMapList } from './kubernetes/corev1/config-map-list';
 import { ServiceList } from './kubernetes/corev1/service-list';
 import { Service } from './kubernetes/corev1/service';
+import { EndpointsList } from './kubernetes/corev1/endpoints-list';
+import { Endpoints } from './kubernetes/corev1/endpoints';
 
 @Injectable({
   providedIn: 'root'
@@ -82,6 +84,16 @@ export class KubeService {
     return this.restService.get<Service>(svcUrl);
   }
 
+  getEndpoints(): Observable<EndpointsList> {
+    const epsUrl = `/api/v1/endpoints`;
+    return this.restService.get<EndpointsList>(epsUrl);
+  }
+
+  getNamespacedEndpoints(namespace: string, name: string): Observable<Endpoints> {
+    const epUrl = `/api/v1/namespaces/${namespace}/endpoints/${name}`;
+    return this.restService.get<Endpoints>(epUrl);
+  }
+
   public static getInstanceNameFromMetadata(metadata: ObjectMeta): string {
     if (!metadata) {
       return '';
@@ -93,5 +105,12 @@ export class KubeService {
       return '';
     }
     return metadata.ownerReferences[0].name;
+  }
+
+  public static getUniqueNameFromMetadata(metadata: ObjectMeta): string {
+    if (!metadata) {
+      return '';
+    }
+    return metadata.namespace + "/" + metadata.name;
   }
 }

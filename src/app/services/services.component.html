@@ -1,3 +1,25 @@
-<p>
-  services works!
-</p>
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td><span (click)="showNamespaceFilter = !showNamespaceFilter">Namespace</span>
+        <input *ngIf="showNamespaceFilter" [(ngModel)]="filter.namespace" (keyup.enter)="onFilter()" />
+      </td>
+      <td><span (click)="showInstanceFilter = !showInstanceFilter">Instance</span>
+        <input *ngIf="showInstanceFilter" [(ngModel)]="filter.instance" (keyup.enter)="onFilter()" />
+      </td>
+      <td>ClusterIP</td>
+      <td>Endpoints</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let swep of services">
+      <td><a routerLink="/namespaces/{{swep.service.metadata.namespace}}/services/{{swep.service.metadata.name}}">{{swep.service.metadata.name}}</a></td>
+      <td>{{swep.service.metadata.namespace}}</td>
+      <td>{{instanceName(swep.service.metadata)}}</td>
+      <td>{{swep.service.spec.clusterIP}}</td>
+      <td><a *ngIf="swep.endpoints" routerLink="/namespaces/{{swep.endpoints.metadata.namespace}}/endpoints/{{swep.endpoints.metadata.name}}">{{swep.endpoints.metadata.name}}</a></td>
+    </tr>
+  </tbody>
+</table>
+

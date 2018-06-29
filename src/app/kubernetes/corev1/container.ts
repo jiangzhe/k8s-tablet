@@ -22,7 +22,7 @@ export interface Container {
   lifecycle: Lifecycle;
   terminationMessagePath: string;
   terminationMessagePolicy: string;
-  imagePullPolicy: string;
+  imagePullPolicy: string;  // enum
   // securityContext: SecurityContext;
   stdin: boolean;
   stdinOnce: boolean;

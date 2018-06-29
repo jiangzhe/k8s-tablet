@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { KubeService } from '../kube.service';
 import { Service } from '../kubernetes/corev1/service';
 import { ListFilter } from '../utils/list-filter';
+import { forkJoin } from 'rxjs';
+import { Endpoints } from '../kubernetes/corev1/endpoints';
+import { ServiceWithEndpoints } from '../utils/service-with-endpoints';
 
 @Component({
   selector: 'app-services',
@@ -10,9 +13,10 @@ import { ListFilter } from '../utils/list-filter';
 })
 export class ServicesComponent implements OnInit {
   instanceName = KubeService.getInstanceNameFromMetadata;
+  uniqueName = KubeService.getUniqueNameFromMetadata;
 
-  services: Service[];
-  fullServices: Service[];
+  services: ServiceWithEndpoints[];
+  fullServices: ServiceWithEndpoints[];
   filter: ListFilter = new ListFilter();
   showNamespaceFilter = false;
   showInstanceFilter = false;
@@ -20,13 +24,27 @@ export class ServicesComponent implements OnInit {
   constructor(private kubeService: KubeService) { }
 
   ngOnInit() {
-    this.kubeService.getServices().subscribe(svcs => {
-      this.fullServices = svcs.items;
-      this.onFilter();
-    })
+    forkJoin(this.kubeService.getServices(), this.kubeService.getEndpoints())
+      .subscribe(data => {
+        let svcs = data[0];
+        let eps = data[1]
+
+        let endpointsMap: {[name: string]: Endpoints} = {};
+        eps.items.forEach((ep, i, arr) => {
+          endpointsMap[this.uniqueName(ep.metadata)] = ep;
+        });
+        this.fullServices = svcs.items.map(svc => {
+          let ep = endpointsMap[this.uniqueName(svc.metadata)];
+          return {
+            service: svc,
+            endpoints: ep,
+          }
+        });
+        this.onFilter();
+      });
   }
 
   onFilter() {
-    this.services = this.fullServices.filter(s => this.filter.check(s.metadata));
+    this.services = this.fullServices.filter(s => this.filter.check(s.service.metadata));
   }
 }

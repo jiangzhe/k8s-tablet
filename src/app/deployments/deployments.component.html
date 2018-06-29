@@ -14,9 +14,9 @@
   </thead>
   <tbody>
     <tr *ngFor="let deployment of deployments">
-      <td>{{deployment.metadata.name}}</td>
+      <td><a routerLink="/namespaces/{{deployment.metadata.namespace}}/deployments/{{deployment.metadata.name}}">{{deployment.metadata.name}}</a></td>
       <td>{{deployment.metadata.namespace}}</td>
-      <td>{{instanceName(deployment.metadata)}}</td>
+      <td><a *ngIf="instanceName(deployment.metadata) as instName" routerLink="/namespaces/{{deployment.metadata.namespace}}/instances/{{instName}}">{{instName}}</a></td>
       <td>{{deployment.spec.replicas}}</td>
       <td>{{deployment.status.availableReplicas}}</td>
     </tr>

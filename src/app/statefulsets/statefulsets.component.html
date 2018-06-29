@@ -14,9 +14,9 @@
     </thead>
     <tbody>
       <tr *ngFor="let statefulset of statefulsets">
-        <td>{{statefulset.metadata.name}}</td>
+        <td><a routerLink="/namespaces/{{statefulset.metadata.namespace}}/statefulsets/{{statefulset.metadata.name}}">{{statefulset.metadata.name}}</a></td>
         <td>{{statefulset.metadata.namespace}}</td>
-        <td>{{instanceName(statefulset.metadata)}}</td>
+        <td><a *ngIf="instanceName(statefulset.metadata) as instName" routerLink="/namespaces/{{statefulset.metadata.namespace}}/instances/{{instName}}">{{instName}}</a></td>
         <td>{{statefulset.spec.replicas}}</td>
         <td>{{statefulset.status.availableReplicas}}</td>
       </tr>

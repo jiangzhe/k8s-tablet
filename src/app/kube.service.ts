@@ -21,7 +21,7 @@ import { Endpoints } from './kubernetes/corev1/endpoints';
   providedIn: 'root'
 })
 export class KubeService {
-
+  
   constructor(private restService: RestService) { }
 
   getNamespaces(): Observable<NamespaceList> {
@@ -112,5 +112,31 @@ export class KubeService {
       return '';
     }
     return metadata.namespace + "/" + metadata.name;
+  }
+
+  static instanceEnabled = false;
+
+  public static setInstanceEnabled(enabled: boolean) {
+    KubeService.instanceEnabled = enabled;
+  }
+
+  public static getInstanceEnabled(): boolean {
+    return KubeService.instanceEnabled;
+  }
+
+  static transferFormat = "json";
+
+  static displayFormat = "yaml";
+
+  public static getTransferFormat(): string {
+    return KubeService.transferFormat;
+  }
+
+  public static getDisplayFormat(): string {
+    return KubeService.displayFormat;
+  }
+
+  public static setDisplayFormat(format: string): void {
+    KubeService.displayFormat = format;
   }
 }

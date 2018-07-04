@@ -12,6 +12,7 @@ import { ConfigmapComponent } from './configmap/configmap.component';
 import { DaemonsetComponent } from './daemonset/daemonset.component';
 import { ServicesComponent } from './services/services.component';
 import { ServiceComponent } from './service/service.component';
+import { EndpointComponent } from './endpoint/endpoint.component';
 const routes: Routes = [
   {path: "", redirectTo: "namespaces", pathMatch: "full"},
   {path: "namespaces", component: NamespacesComponent},
@@ -26,6 +27,7 @@ const routes: Routes = [
   {path: "namespaces/:namespace/daemonsets/:name", component: DaemonsetComponent},
   {path: "services", component: ServicesComponent},
   {path: "namespaces/:namespace/services/:name", component: ServiceComponent},
+  {path: "namespaces/:namespace/endpoints/:name", component: EndpointComponent},
 ];
 
 @NgModule({

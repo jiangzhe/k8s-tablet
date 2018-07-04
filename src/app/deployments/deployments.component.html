@@ -5,7 +5,7 @@
       <td><span (click)="showNamespaceFilter = !showNamespaceFilter">Namespace</span>
         <input *ngIf="showNamespaceFilter" [(ngModel)]="filter.namespace" (keyup.enter)="onFilter()" />
       </td>
-      <td><span (click)="showInstanceFilter = !showInstanceFilter">Instance</span>
+      <td *ngIf="instanceEnabled()"><span (click)="showInstanceFilter = !showInstanceFilter">Instance</span>
         <input *ngIf="showInstanceFilter" [(ngModel)]="filter.instance" (keyup.enter)="onFilter()" />
       </td>
       <td>Replica</td>
@@ -16,7 +16,7 @@
     <tr *ngFor="let deployment of deployments">
       <td><a routerLink="/namespaces/{{deployment.metadata.namespace}}/deployments/{{deployment.metadata.name}}">{{deployment.metadata.name}}</a></td>
       <td>{{deployment.metadata.namespace}}</td>
-      <td><a *ngIf="instanceName(deployment.metadata) as instName" routerLink="/namespaces/{{deployment.metadata.namespace}}/instances/{{instName}}">{{instName}}</a></td>
+      <td *ngIf="instanceEnabled()"><a *ngIf="instanceName(deployment.metadata) as instName" routerLink="/namespaces/{{deployment.metadata.namespace}}/instances/{{instName}}">{{instName}}</a></td>
       <td>{{deployment.spec.replicas}}</td>
       <td>{{deployment.status.availableReplicas}}</td>
     </tr>

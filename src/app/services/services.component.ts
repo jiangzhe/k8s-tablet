@@ -12,14 +12,16 @@ import { ServiceWithEndpoints } from '../utils/service-with-endpoints';
   styleUrls: ['./services.component.css']
 })
 export class ServicesComponent implements OnInit {
-  instanceName = KubeService.getInstanceNameFromMetadata;
-  uniqueName = KubeService.getUniqueNameFromMetadata;
 
   services: ServiceWithEndpoints[];
   fullServices: ServiceWithEndpoints[];
   filter: ListFilter = new ListFilter();
   showNamespaceFilter = false;
   showInstanceFilter = false;
+
+  instanceEnabled = KubeService.getInstanceEnabled;
+  instanceName = KubeService.getInstanceNameFromMetadata;
+  uniqueName = KubeService.getUniqueNameFromMetadata;
 
   constructor(private kubeService: KubeService) { }
 

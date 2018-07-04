@@ -5,7 +5,7 @@
         <td><span (click)="showNamespaceFilter = !showNamespaceFilter">Namespace</span>
           <input *ngIf="showNamespaceFilter" [(ngModel)]="filter.namespace" (keyup.enter)="onFilter()" />
         </td>
-        <td><span (click)="showInstanceFilter = !showInstanceFilter">Instance</span>
+        <td *ngIf="instanceEnabled()"><span (click)="showInstanceFilter = !showInstanceFilter">Instance</span>
           <input *ngIf="showInstanceFilter" [(ngModel)]="filter.instance" (keyup.enter)="onFilter()" />
         </td>
         <td>Replica</td>
@@ -16,7 +16,7 @@
       <tr *ngFor="let statefulset of statefulsets">
         <td><a routerLink="/namespaces/{{statefulset.metadata.namespace}}/statefulsets/{{statefulset.metadata.name}}">{{statefulset.metadata.name}}</a></td>
         <td>{{statefulset.metadata.namespace}}</td>
-        <td><a *ngIf="instanceName(statefulset.metadata) as instName" routerLink="/namespaces/{{statefulset.metadata.namespace}}/instances/{{instName}}">{{instName}}</a></td>
+        <td *ngIf="instanceEnabled()"><a *ngIf="instanceName(statefulset.metadata) as instName" routerLink="/namespaces/{{statefulset.metadata.namespace}}/instances/{{instName}}">{{instName}}</a></td>
         <td>{{statefulset.spec.replicas}}</td>
         <td>{{statefulset.status.availableReplicas}}</td>
       </tr>

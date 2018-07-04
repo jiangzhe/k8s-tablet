@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { StatefulSet } from '../kubernetes/appsv1beta1/stateful-set';
-import { KubeService } from '../kube.service';
-import { ActivatedRoute} from '@angular/router';
+import { Endpoints } from '../kubernetes/corev1/endpoints';
+import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { KubeService } from '../kube.service';
 import * as jsyaml from 'js-yaml';
 
 @Component({
-  selector: 'app-statefulset',
-  templateUrl: './statefulset.component.html',
-  styleUrls: ['./statefulset.component.css']
+  selector: 'app-endpoint',
+  templateUrl: './endpoint.component.html',
+  styleUrls: ['./endpoint.component.css']
 })
-export class StatefulsetComponent implements OnInit {
-  current: StatefulSet;
+export class EndpointComponent implements OnInit {
+  current: Endpoints;
   format: string = KubeService.getDisplayFormat();
   currentJson: string;
   currentYaml: string;
@@ -23,9 +23,10 @@ export class StatefulsetComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    console.log("enter deployment component");
     const namespace = this.route.snapshot.paramMap.get("namespace");
     const name = this.route.snapshot.paramMap.get("name");
-    this.kubeService.getNamespacedStatefulSet(namespace, name)
+    this.kubeService.getNamespacedEndpoints(namespace, name)
       .subscribe(ss => {
         this.current = ss;
         this.currentJson = JSON.stringify(ss, null, 2);
@@ -39,5 +40,4 @@ export class StatefulsetComponent implements OnInit {
     }
     return this.currentYaml;
   }
-
 }

@@ -1,3 +1,23 @@
-<p>
-  configmaps works!
-</p>
+<table>
+  <thead>
+    <tr>
+      <td>Name</td>
+      <td><span (click)="showNamespaceFilter = !showNamespaceFilter">Namespace</span>
+        <input *ngIf="showNamespaceFilter" [(ngModel)]="filter.namespace" (keyup.enter)="onFilter()" />
+      </td>
+      <td *ngIf="instanceEnabled()"><span (click)="showInstanceFilter = !showInstanceFilter">Instance</span>
+        <input *ngIf="showInstanceFilter" [(ngModel)]="filter.instance" (keyup.enter)="onFilter()" />
+      </td>
+      <td>Data</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let configmap of configmaps">
+      <td><a routerLink="/namespaces/{{configmap.metadata.namespace}}/configmaps/{{configmap.metadata.name}}">{{configmap.metadata.name}}</a></td>
+      <td>{{configmap.metadata.namespace}}</td>
+      <td *ngIf="instanceEnabled()"><a *ngIf="instanceName(configmap.metadata) as instName" routerLink="/namespaces/{{configmap.metadata.namespace}}/instances/{{instName}}">{{instName}}</a></td>
+      <td>{{summarize(configmap.data)}}</td>
+    </tr>
+  </tbody>
+</table>
+

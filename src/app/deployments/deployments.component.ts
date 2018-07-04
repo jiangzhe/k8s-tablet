@@ -14,7 +14,8 @@ export class DeploymentsComponent implements OnInit {
   filter: ListFilter = new ListFilter();
   showNamespaceFilter = false;
   showInstanceFilter = false;
-
+  
+  instanceEnabled = KubeService.getInstanceEnabled;
   instanceName = KubeService.getInstanceNameFromMetadata;
 
   constructor(private kubeService: KubeService) { }

@@ -9,13 +9,15 @@ import { ListFilter } from '../utils/list-filter';
   styleUrls: ['./statefulsets.component.css']
 })
 export class StatefulsetsComponent implements OnInit {
-  instanceName = KubeService.getInstanceNameFromMetadata;
   filter: ListFilter = new ListFilter();
 
   statefulsets: StatefulSet[];
   fullStatefulsets: StatefulSet[];
   showNamespaceFilter = false;
   showInstanceFilter = false;
+
+  instanceEnabled = KubeService.getInstanceEnabled;
+  instanceName = KubeService.getInstanceNameFromMetadata;
 
   constructor(private kubeService: KubeService) { }
 

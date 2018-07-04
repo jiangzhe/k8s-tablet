@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
+import { HighlightJsModule, HighlightJsService } from 'angular2-highlight-js';
+
 import { AppComponent } from './app.component';
 import { NamespacesComponent } from './namespaces/namespaces.component';
 import { AppRoutingModule } from './/app-routing.module';
@@ -17,6 +19,7 @@ import { ConfigmapComponent } from './configmap/configmap.component';
 import { DeploymentComponent } from './deployment/deployment.component';
 import { ServiceComponent } from './service/service.component';
 import { ServicesComponent } from './services/services.component';
+import { EndpointComponent } from './endpoint/endpoint.component';
 
 @NgModule({
   declarations: [
@@ -32,15 +35,19 @@ import { ServicesComponent } from './services/services.component';
     ConfigmapComponent,
     DeploymentComponent,
     ServiceComponent,
-    ServicesComponent
+    ServicesComponent,
+    EndpointComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HighlightJsModule,
   ],
-  providers: [],
+  providers: [
+    HighlightJsService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
